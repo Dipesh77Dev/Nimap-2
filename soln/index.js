@@ -3,10 +3,9 @@ const server = express();
 const productRouter = require('./router/product.js');
 const categoryRouter = require('./router/category.js');
 const db = require('./models/db.js')
-
-// const bodyParser = require( 'body-parser' );
-// const jwt = require( 'jsonwebtoken' );
+const bodyParser = require( 'body-parser' );
 const cors = require( 'cors' );
+
 server.use( cors() );
 server.set('view engine', 'ejs');
 
@@ -14,7 +13,6 @@ server.set('view engine', 'ejs');
 server.use( express.static( __dirname ) );
 server.use( express.json( { limit: "50mb" } ) );
 server.use( express.urlencoded( { extended: false } ) );
-server.use( express.json() );
 
 db.mongoose.connect(
     db.url,

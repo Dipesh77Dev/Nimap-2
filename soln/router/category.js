@@ -7,6 +7,6 @@ router.get('/displayCategory',controller.find);
 router.post('/addCategory',controller.create);
 router.put('/:id',controller.update);
 router.delete('/:id',controller.deleteById);
-router.delete('/delete',controller.deleteAll);
+router.delete('/',controller.deleteAll);
 
 exports.router = router;

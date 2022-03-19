@@ -4,14 +4,13 @@ const Product = db.productSchema
 exports.create =(req, res) => {
     // res.json("create")
     const product = new Product({
-        id: req.body.id,
         name: req.body.name,
         category : req.body.category,
         price : req.body.price,
         description: req.body.description,
         image : req.file.path
     })
-    // console.log("image path 2 print kyu nahi hua?" , req , req.file , req.file.path)
+    // console.log("image" , req , req.file , req.file.path)
     product.save(product).then(
         data => {
             res.send(data);
@@ -27,7 +26,7 @@ exports.findAll =(req, res) => {
     // var condition=title?{title:{$regex:new RegExp(title)}}:{}
     Product.find().then(
         data => {
-            res.render('addproduct' , {"products":data}); 
+            res.render('product' , {"products":data}); 
             // res.send(data)
         }
     ).catch(

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> PRODUCT PAGE</title>
+    <script src="./product.css"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <!-- <a href="#default" class="logo">CompanyLogo</a> -->
+        <div class="header-right">
+          <a class="active" href=" ">Home</a>
+          <a href=" ">Product Page</a>
+          <a href=" ">Category Page</a>
+        </div>
+    </div>
+    <!-- Product Card -->
+    <!-- <div class="card">
+        <img src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
+        <h1>Tailored Jeans</h1>
+        <p class="price">$19.99</p>
+        <p>Some text about the jeans..</p>
+        <p><button>Add to Cart</button></p>
+      </div> -->
+    <!-- Product Card using flexbox -->
+    
+    <section class="products">
+        <% products.forEach(function(item) { %>
+    <div class="product-card">
+        <div class="product-info">
+        <!-- <img src= "../uploads" <%= item.image %> alt = "not found"> -->
+          <h2> Product ID is :- <%= item.id %></h2>
+          <h4> Product Name is :- <%= item.name %></h4>
+          <h4> Product Category is by Category ID :- <%= item.category %></h4>
+          <h4> Product Price is :- <%= item.price %></h4>
+          <h5> Product Description is :- <%= item.description %></h5>
+        </div>
+      </div>
+      <% }); %>
+    </section>
+</body>
+</html>

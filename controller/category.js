@@ -4,7 +4,7 @@ const Category = db.categorySchema
 exports.create =(req, res) => {
     // res.json("create")
     const category = new Category({
-        name : req.body.name,
+        categoryName : req.body.categoryName,
         description: req.body.description
     })
     category.save(category).then(
@@ -20,7 +20,8 @@ exports.create =(req, res) => {
 exports.find =(req, res) => {
     Category.find().then(
         data => {
-            res.send(data)
+            res.render('category' , {"category":data}); 
+            // res.send(data)
         }
     ).catch(
         err =>{ 
@@ -42,7 +43,7 @@ exports.find =(req, res) => {
 
 exports.update =(req, res) => {
     // res.json("update")
-    Category.findByIdAndUpdate(req.params.id).then(
+    Category.findByIdAndUpdate(req.params.id, req.body).then(
         data =>{
             res.send(data);
         }

@@ -1,7 +1,7 @@
 module.exports =(mongoose) => {
     const Category = mongoose.model(
         "category", mongoose.Schema({
-            name: String,
+            categoryName: String,
             description: String,
         })
     )

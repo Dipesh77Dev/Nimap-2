@@ -21,19 +21,21 @@ exports.create =(req, res) => {
         })
 }
 
-exports.findAll =(req, res) => {
-    // const title=req.query.title
-    // var condition=title?{title:{$regex:new RegExp(title)}}:{}
-    Product.find().then(
-        data => {
-            res.render('product' , {"products":data}); 
-            // res.send(data)
-        }
-    ).catch(
-        err =>{ 
-            res.status(500).send(err)
+exports.findAll = async(req, res) => {
+        try{
+            const query = await Product.find().populate({
+            path: 'category',
+            select: ['categoryName', 'description'],
         })
+        // res.json(query);
+        res.render('product' , {"product": query}); 
+        }
+        catch(err){
+            console.log(err);
+        }
+        console.log(query);
 }
+
 
 // exports.findByID=(req,res)=>{
 //     Product.findById(req.params.id).then(

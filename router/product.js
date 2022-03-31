@@ -13,6 +13,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 router.get('/displayProduct',controller.findAll);
+router.get('/displayAllProduct',controller.findAllProduct);
 // router.get('/:id',controller.findById);
 router.post('/addProduct',upload.single('image'),controller.create);
 router.put('/:id',controller.update);

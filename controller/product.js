@@ -22,20 +22,58 @@ exports.create =(req, res) => {
 }
 
 exports.findAll = async(req, res) => {
-        try{
-            const query = await Product.find().populate({
+        try{   
+            // pagination 
+            const { page = 1, limit = 5} = req.query;
+            const product = await Product.find().limit(limit * 1).skip((page - 1) * limit);
+            // res.status(200).send(product);
+            // res.status(200).json(product);
+
+            /*
+            let { page, size } = req.query;
+
+            if(!page){
+                page = 1
+            }
+            if(!size){
+                size = 5
+            }
+
+            const limit = parseInt(size);
+            const skip = (page - 1) * size;
+
+            const product = await Product.find({},{},{limit: limit, skip: skip}) Query,projection
+            const product = await Product.find().limit(limit).skip(skip)
+            */
+
+            // populate
+            const populate = await Product.find().populate({
             path: 'category',
             select: ['categoryName', 'description'],
         })
-        // res.json(query);
-        res.render('product' , {"product": query}); 
+        // rendering by populate & pagination
+        res.render('product' , {"product": populate, product});
         }
         catch(err){
             console.log(err);
+            // res.status(500).json(e)
         }
-        console.log(query);
+        // console.log(query);
 }
 
+// without pagination & populate
+exports.findAllProduct =(req, res) => {
+    Product.find().then(
+        data => {
+            // rendering all product without pagination & populate
+            res.render('product' , {"product":data}); 
+            // res.send(data)
+        }
+    ).catch(
+        err =>{ 
+            res.status(500).send(err)
+        })
+}
 
 // exports.findByID=(req,res)=>{
 //     Product.findById(req.params.id).then(

@@ -1,13 +1,18 @@
 const db = require('../models/db.js')
-const Category = db.categorySchema
+const User = db.userSchema
 
 exports.create =(req, res) => {
     // res.json("create")
-    const category = new Category({
-        categoryName : req.body.categoryName,
-        description: req.body.description
+    const user = new User({
+        id : req.body.id,
+        name : req.body.name,
+        // username : req.body.username,
+        email : req.body.email,
+        password : req.body.password,
+        phoneNo : req.body.phoneNo,
+        address : req.body.address
     })
-    category.save(category).then(
+    user.save(user).then(
         data => {
             res.send(data); 
         }
@@ -17,11 +22,11 @@ exports.create =(req, res) => {
         })
 }
 
+
 exports.find =(req, res) => {
-    Category.find().then(
+    User.find().then(
         data => {
-            res.render('category' , {"category":data}); 
-            // res.send(data)
+            res.send(data);
         }
     ).catch(
         err =>{ 
@@ -29,21 +34,9 @@ exports.find =(req, res) => {
         })
 }
 
-// exports.findByID=(req,res)=>{
-//     Category.findById(req.params.id).then(
-//         data=>{
-//             res.send(data)
-//         }
-//     ).catch(
-//         err=>{
-//             res.status(500).send(err)
-//         }
-//     )
-// }
-
 exports.update =(req, res) => {
     // res.json("update")
-    Category.findByIdAndUpdate(req.params.id, req.body).then(
+    User.findByIdAndUpdate(req.params.id, req.body).then(
         data =>{
             res.send(data);
         }
@@ -55,7 +48,7 @@ exports.update =(req, res) => {
 
 exports.deleteById =(req, res) => {
     // res.json("deleteById")
-    Category.findByIdAndRemove(req.params.id, req.body).then(
+    User.findByIdAndRemove(req.params.id, req.body).then(
         data => {
             if(!data){
                 res.send("No data has been found");
@@ -70,7 +63,7 @@ exports.deleteById =(req, res) => {
 
 exports.deleteAll =(req, res) => {
     // res.json("deleteAll")
-    Category.deleteMany({}).then(
+    User.deleteMany({}).then(
         data => {
             res.send(data+ "documents deleted")
         }
@@ -79,3 +72,4 @@ exports.deleteAll =(req, res) => {
             res.status(500).send(err)
         })
 }
+

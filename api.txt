@@ -29,3 +29,5 @@ We had limit till 5 so, We can give any limit like 1(only 1 product of that page
 4(only 4 product of that page), 5(all product of that page)
 Pages are till 6, bcoz we had inserted only 28 records of products, so till page 5 => We had 5 records of products-per page;
 On page 6, we had only 3 records.
+
+auth refer link - https://github.com/Olanetsoft/jwt-project
